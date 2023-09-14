@@ -6,7 +6,7 @@ funding:
  - https://github.com/sponsors/rbellens
 
 environment:
-  sdk: '>=2.14.0 <3.0.0'
+  sdk: '>=2.14.0 <4.0.0'
 
 dependencies:
   pointycastle: ^3.6.2
