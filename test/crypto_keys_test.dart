@@ -928,10 +928,10 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
-        
-      if (keyPair == null) {
-        throw UnimplementedError('Unkown keyPair');
-      }
+
+        if (keyPair == null) {
+          throw UnimplementedError('Unkown keyPair');
+        }
 
         var data = Uint8List.fromList([
           101,
@@ -1718,10 +1718,10 @@ void main() {
         test('Example encryption using AES Key Wrap 128', () {
           var keyPair =
               KeyPair.fromJwk({'kty': 'oct', 'k': 'GawgguFyGrWKav7AX4VKUg'});
-          
-      if (keyPair == null) {
-        throw UnimplementedError('Unkown keyPair');
-      }
+
+          if (keyPair == null) {
+            throw UnimplementedError('Unkown keyPair');
+          }
 
           var encryptedData = EncryptionResult(Uint8List.fromList([
             232,
@@ -1814,10 +1814,10 @@ void main() {
               'B9nNTwMVvH3VRRSLWACvPnSiwP8N5Usy-WRXS-V7TbpxIhvepTfE0NNo'
         };
         var keyPair = KeyPair.fromJwk(jwk);
-       
-      if (keyPair == null) {
-        throw UnimplementedError('Unkown keyPair');
-      }
+
+        if (keyPair == null) {
+          throw UnimplementedError('Unkown keyPair');
+        }
 
         var data = Uint8List.fromList([
           4,
@@ -2151,10 +2151,10 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
-        
-      if (keyPair == null) {
-        throw UnimplementedError('Unkown keyPair');
-      }
+
+        if (keyPair == null) {
+          throw UnimplementedError('Unkown keyPair');
+        }
         var data = Uint8List.fromList([
           177,
           161,
@@ -2500,10 +2500,10 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
-        
-      if (keyPair == null) {
-        throw UnimplementedError('Unkown keyPair');
-      }
+
+        if (keyPair == null) {
+          throw UnimplementedError('Unkown keyPair');
+        }
 
         var encryptedData = EncryptionResult(Uint8List.fromList([
           124,
