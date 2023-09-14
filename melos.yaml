@@ -1,8 +1,6 @@
+name: crypto_keys
 
-name: jose
-
-repository: https://github.com/appsup-dart/crypto_keys
-
+repository: https://github.com/Bdaya-dev/crypto_keys
 
 packages:
   - .
@@ -15,8 +13,5 @@ command:
     linkToCommits: true
 
 scripts:
-  preversion: 
+  preversion:
     exec: dart test -j 1
-
-
- 

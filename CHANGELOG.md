@@ -1,3 +1,7 @@
+## 0.4.0
+  -   **REFACTOR**: remove dependency on quiver.
+  -   **FIX**: return null instead of throwning when seeing an uknown curve/key type...  
+
 ## 0.3.0+1
 
  - **REFACTOR**: use OAEPEncoding.withSHA256 implementation from pointycastle. ([00510d2e](https://github.com/appsup-dart/crypto_keys/commit/00510d2e3df5b24541230832c162f06c571cd18c))
