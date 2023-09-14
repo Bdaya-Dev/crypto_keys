@@ -2,7 +2,6 @@ import '../crypto_keys.dart';
 
 import 'dart:typed_data';
 import 'package:collection/collection.dart';
-import 'package:quiver/core.dart';
 
 class RsaPublicKeyImpl extends PublicKey
     with Key
@@ -15,7 +14,7 @@ class RsaPublicKeyImpl extends PublicKey
   RsaPublicKeyImpl({required this.modulus, required this.exponent});
 
   @override
-  int get hashCode => hash2(exponent, modulus);
+  int get hashCode => Object.hash(exponent, modulus);
 
   @override
   bool operator ==(Object other) =>
@@ -47,8 +46,8 @@ class RsaPrivateKeyImpl extends PrivateKey
       required this.modulus});
 
   @override
-  int get hashCode =>
-      hash4(privateExponent, firstPrimeFactor, secondPrimeFactor, modulus);
+  int get hashCode => Object.hash(
+      privateExponent, firstPrimeFactor, secondPrimeFactor, modulus);
 
   @override
   bool operator ==(Object other) =>
@@ -76,7 +75,7 @@ class EcPublicKeyImpl extends PublicKey with Key implements EcPublicKey, EcKey {
       required this.curve});
 
   @override
-  int get hashCode => hash3(xCoordinate, yCoordinate, curve);
+  int get hashCode => Object.hash(xCoordinate, yCoordinate, curve);
 
   @override
   bool operator ==(Object other) =>
@@ -99,7 +98,7 @@ class EcPrivateKeyImpl extends PrivateKey
   EcPrivateKeyImpl({required this.eccPrivateKey, required this.curve});
 
   @override
-  int get hashCode => hash2(eccPrivateKey, curve);
+  int get hashCode => Object.hash(eccPrivateKey, curve);
 
   @override
   bool operator ==(Object other) =>
@@ -160,11 +159,12 @@ class EncryptionResultImpl implements EncryptionResult {
       this.additionalAuthenticatedData});
 
   @override
-  int get hashCode => hash4(
-      const ListEquality().hash(data),
-      const ListEquality().hash(initializationVector),
-      const ListEquality().hash(authenticationTag),
-      const ListEquality().hash(additionalAuthenticatedData));
+  int get hashCode => Object.hash(
+        const ListEquality().hash(data),
+        const ListEquality().hash(initializationVector),
+        const ListEquality().hash(authenticationTag),
+        const ListEquality().hash(additionalAuthenticatedData),
+      );
 
   @override
   bool operator ==(other) =>

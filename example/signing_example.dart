@@ -1,4 +1,4 @@
-import 'package:crypto_keys/crypto_keys.dart';
+import 'package:crypto_keys_plus/crypto_keys.dart';
 import 'dart:typed_data';
 
 void main() {
@@ -9,6 +9,10 @@ void main() {
         'aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow'
   });
 
+  if (keyPair == null) {
+    print('Unkown key type (kty)');
+    return;
+  }
   // A key pair has a private and public key, possibly one of them is null, if
   // required info was not available when construction
   // The private key can be used for signing

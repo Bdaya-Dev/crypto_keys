@@ -1,4 +1,4 @@
-import 'package:crypto_keys/crypto_keys.dart';
+import 'package:crypto_keys_plus/crypto_keys.dart';
 import 'dart:typed_data';
 
 void main() {

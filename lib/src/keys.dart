@@ -104,7 +104,7 @@ class KeyPair {
   }
 
   /// Create a key pair from a JsonWebKey
-  factory KeyPair.fromJwk(Map<String, dynamic> jwk) {
+  static KeyPair? fromJwk(Map<String, dynamic> jwk) {
     switch (jwk['kty']) {
       case 'oct':
         var key = SymmetricKey(keyValue: _base64ToBytes(jwk['k']) as Uint8List);
@@ -129,22 +129,25 @@ class KeyPair {
                   )
                 : null);
       case 'EC':
+        final curve = _parseCurve(jwk['crv']);
         return KeyPair(
-            privateKey: jwk.containsKey('d') && jwk.containsKey('crv')
-                ? EcPrivateKey(
-                    eccPrivateKey: _base64ToInt(jwk['d']),
-                    curve: _parseCurve(jwk['crv']))
-                : null,
-            publicKey: jwk.containsKey('x') &&
-                    jwk.containsKey('y') &&
-                    jwk.containsKey('crv')
-                ? EcPublicKey(
-                    xCoordinate: _base64ToInt(jwk['x']),
-                    yCoordinate: _base64ToInt(jwk['y']),
-                    curve: _parseCurve(jwk['crv']))
-                : null);
+          privateKey: jwk.containsKey('d') && curve != null
+              ? EcPrivateKey(
+                  eccPrivateKey: _base64ToInt(jwk['d']),
+                  curve: curve,
+                )
+              : null,
+          publicKey:
+              jwk.containsKey('x') && jwk.containsKey('y') && curve != null
+                  ? EcPublicKey(
+                      xCoordinate: _base64ToInt(jwk['x']),
+                      yCoordinate: _base64ToInt(jwk['y']),
+                      curve: curve,
+                    )
+                  : null,
+        );
     }
-    throw ArgumentError('Unknown key type ${jwk['kty']}');
+    return null;
   }
 
   /// Creates a [Signer] using the private key and the specified algorithm.
@@ -176,15 +179,12 @@ BigInt _base64ToInt(String encoded) {
       .fold(BigInt.zero, (a, b) => a * b256 + BigInt.from(b));
 }
 
-Identifier _parseCurve(String name) {
+Identifier? _parseCurve(String name) {
   var v = {
     'P-256': curves.p256,
     'P-256K': curves.p256k,
     'P-384': curves.p384,
     'P-521': curves.p521,
   }[name];
-  if (v == null) {
-    throw UnsupportedError('Unknown curve $name');
-  }
   return v;
 }

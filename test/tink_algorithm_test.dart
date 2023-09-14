@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:crypto_keys/crypto_keys.dart';
+import 'package:crypto_keys_plus/crypto_keys.dart';
 import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 

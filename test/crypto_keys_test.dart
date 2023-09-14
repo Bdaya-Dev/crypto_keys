@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:crypto_keys/crypto_keys.dart';
+import 'package:crypto_keys_plus/crypto_keys.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 
@@ -79,6 +79,10 @@ void main() {
       };
 
       var keyPair = KeyPair.fromJwk(jwk);
+
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
 
       var data = Uint8List.fromList([
         101,
@@ -299,7 +303,9 @@ void main() {
       };
 
       var keyPair = KeyPair.fromJwk(jwk);
-
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
       var data = Uint8List.fromList([
         101,
         121,
@@ -710,7 +716,9 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
-
+        if (keyPair == null) {
+          throw UnimplementedError('Unkown keyPair');
+        }
         var data = Uint8List.fromList([
           101,
           121,
@@ -920,6 +928,10 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
+        
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
 
         var data = Uint8List.fromList([
           101,
@@ -1106,6 +1118,19 @@ void main() {
 
           _testSigning(keyPair, alg, data as Uint8List);
         }
+      });
+
+      test('Example handling unkown curve', () {
+        var jwk = {
+          'kty': 'OKP',
+          'use': 'sig',
+          'crv': 'Ed25519',
+          'kid': 'fd8709f3-df83-4c91-81dd-97d0c4ae3c79',
+          'x': 'aigIzKFXi-h-wtqhbUmK3knnbBgd_I9169keewi5Fcc',
+        };
+
+        var keyPair = KeyPair.fromJwk(jwk);
+        expect(keyPair, null);
       });
     });
   });
@@ -1693,6 +1718,10 @@ void main() {
         test('Example encryption using AES Key Wrap 128', () {
           var keyPair =
               KeyPair.fromJwk({'kty': 'oct', 'k': 'GawgguFyGrWKav7AX4VKUg'});
+          
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
 
           var encryptedData = EncryptionResult(Uint8List.fromList([
             232,
@@ -1785,6 +1814,10 @@ void main() {
               'B9nNTwMVvH3VRRSLWACvPnSiwP8N5Usy-WRXS-V7TbpxIhvepTfE0NNo'
         };
         var keyPair = KeyPair.fromJwk(jwk);
+       
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
 
         var data = Uint8List.fromList([
           4,
@@ -2118,7 +2151,10 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
-
+        
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
         var data = Uint8List.fromList([
           177,
           161,
@@ -2464,6 +2500,10 @@ void main() {
         };
 
         var keyPair = KeyPair.fromJwk(jwk);
+        
+      if (keyPair == null) {
+        throw UnimplementedError('Unkown keyPair');
+      }
 
         var encryptedData = EncryptionResult(Uint8List.fromList([
           124,
