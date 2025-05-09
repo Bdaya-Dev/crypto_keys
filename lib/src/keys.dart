@@ -66,15 +66,14 @@ class KeyPair {
 
     return KeyPair(
         publicKey: RsaPublicKey(
-          exponent: (pair.publicKey as pc.RSAPublicKey).publicExponent!,
-          modulus: (pair.publicKey as pc.RSAPublicKey).n!,
+          exponent: pair.publicKey.publicExponent!,
+          modulus: pair.publicKey.n!,
         ),
         privateKey: RsaPrivateKey(
-          modulus: (pair.privateKey as pc.RSAPrivateKey).n!,
-          privateExponent:
-              (pair.privateKey as pc.RSAPrivateKey).privateExponent!,
-          firstPrimeFactor: (pair.privateKey as pc.RSAPrivateKey).p!,
-          secondPrimeFactor: (pair.privateKey as pc.RSAPrivateKey).q!,
+          modulus: pair.privateKey.n!,
+          privateExponent: pair.privateKey.privateExponent!,
+          firstPrimeFactor: pair.privateKey.p!,
+          secondPrimeFactor: pair.privateKey.q!,
         ));
   }
 
@@ -93,14 +92,11 @@ class KeyPair {
 
     return KeyPair(
         publicKey: EcPublicKey(
-            xCoordinate:
-                (pair.publicKey as pc.ECPublicKey).Q!.x!.toBigInteger()!,
-            yCoordinate:
-                (pair.publicKey as pc.ECPublicKey).Q!.y!.toBigInteger()!,
+            xCoordinate: pair.publicKey.Q!.x!.toBigInteger()!,
+            yCoordinate: pair.publicKey.Q!.y!.toBigInteger()!,
             curve: curve),
-        privateKey: EcPrivateKey(
-            eccPrivateKey: (pair.privateKey as pc.ECPrivateKey).d!,
-            curve: curve));
+        privateKey:
+            EcPrivateKey(eccPrivateKey: pair.privateKey.d!, curve: curve));
   }
 
   /// Create a key pair from a JsonWebKey

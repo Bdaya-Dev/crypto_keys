@@ -701,7 +701,7 @@ void main() {
         var keyPair = KeyPair.generateRsa();
         var alg = algorithms.signing.rsa.sha384;
 
-        _testSigning(keyPair, alg, data as Uint8List);
+        _testSigning(keyPair, alg, data);
       });
     });
 
@@ -1116,7 +1116,7 @@ void main() {
             curves.p521: algorithms.signing.ecdsa.sha512,
           }[curve]!;
 
-          _testSigning(keyPair, alg, data as Uint8List);
+          _testSigning(keyPair, alg, data);
         }
       });
 
