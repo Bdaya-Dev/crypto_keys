@@ -1,3 +1,6 @@
+## 0.5.0
+  -   **UPGRADE**: migrated to pointycastle 4.0.0.
+
 ## 0.4.0
   -   **REFACTOR**: remove dependency on quiver.
   -   **FIX**: return null instead of throwning when seeing an uknown curve/key type...  
